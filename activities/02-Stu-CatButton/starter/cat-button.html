@@ -12,32 +12,31 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
-    //
+    // attach a click event to the cat button, declaring a fucntion of what should happen when clicked
     $("#cat-button").on("click", function() {
 
-      //
-      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats&rating=pg";
+      //create a variable with your api key and tag parameters e.g. cats and a pg rating
+      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=gF8vg9S25xQWDIJXjb3cLi9egqCD3TPQ&tag=cats&rating=pg";
 
-      //
+      //ajax calls the api
       $.ajax({
         url: queryURL,
         method: "GET"
       })
 
-      //
+      //.then enacts a code aftre the ajax fucnton has retrived the data
         .then(function(response) {
 
-        //
+        // Find an image url from the json which the api provides from the categories it gives
         var imageUrl = response.data.images.original.url;
-
-          //
+          //make an image tage
           var catImage = $("<img>");
 
-          //
+          // add the image url from the api into the image tag and add the image dscription
           catImage.attr("src", imageUrl);
           catImage.attr("alt", "cat image");
 
-          //
+          //attach the image element to the html div set up to hold images
           $("#images").prepend(catImage);
         });
     });
